@@ -1,0 +1,62 @@
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #7f8a9b;
+    border-color: #616b78;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+body {
+    background-color: darkgrey;
+}
+
+.container {
+    background-color: white;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+img{
+    max-width: 570px;
+    height: 380px;
+    margin-right: 10px;
+}
+
+.container.my-5{
+    padding-top: 0px;
+    padding-bottom: 10px;
+    height: 450px;
+}
+
+.row{
+    height: 400px;
+}
+
+p {
+    text-align: justify;
+    font-size: 23px;
+}
+
+a:hover { 
+    color: black; 
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a.comments:hover{
+    color: #12468c;
+}
+
+.d-flex.w-100.justify-content-between{
+    margin-bottom: 15px;
+}
+
+.pagination {
+    justify-content: center;
+}
