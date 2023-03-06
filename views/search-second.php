@@ -7,12 +7,17 @@
         <link rel="stylesheet" href="/new_frame/tamplate/css/style.css" type="text/css">
         <script src="/new_frame/tamplate/js/jquery-3.6.3.min.js"></script>  
         <script>
-        function del() {
-            if (confirm('Вы действительно хотите удалить запись?'))
-                document.getElementById('del_form').submit();
-        }
-        </script>
-        <script>
+            function del()//Любая функция
+            {
+            if(confirm('Удалить?'))
+            /*функция со всплывающим окном
+            с выбором действий "ок" или "отмена"*/
+            {
+            }
+            }
+
+            </script>
+            <script>
             async function sendr(){
             let response = await fetch('main/search',{
                 method: 'POST',
@@ -23,7 +28,7 @@
                 document.getElementById("res").innerHTML = await response.text();
             }
             }
-        </script>
+            </script>
         <title>main</title>
     </head>
     <body class="d-flex flex-column h-100">
@@ -43,7 +48,7 @@
                                 </p>                      
                                 <small><?php echo $value['date_article']; ?></small><br><br>
                                 <?if((isset($_SESSION['id_role'] )) and $_SESSION['id_role'] == 1):?>
-                                <a href="delete/<?php echo $value['id_article']; ?>" method="get"  class='link'  onclick="del();">удалить новость</a><br><br>
+                                <a href="delete/<?php echo $value['id_article']; ?>" class='link' onclick="return del()"">удалить новость</a><br><br>
                                 <a href="update/<?php echo $value['id_article']; ?>" class='link'">изменить новость</a>
                                 <?endif?>
                             </div>
@@ -51,46 +56,10 @@
                     </div><!--container-->
                 </a>    
             <?php endforeach; ?>  
-            <?php
-                if(count($result) > 0)
-                {
-                 if($page <= 1)
-                 {
-                  echo '
-                  <ul class="pagination">                         
-                    <li class="page-item disabled"><a class="page-link" href="#">Предыдущая</a></li>
-                    <li class="page-item"><a class="page-link" href="main?page='.$next.'">Следующая</a></li>
-                  </ul>      
-                  ';
-                 }
-                 elseif($page >= $pages)
-                 {
-                  echo '
-                  <ul class="pagination">      
-                    <li class="page-item"><a class="page-link" href="main?page='.$previous.'">Предыдущая</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">Следующая</a></li>
-                  </ul>
-                  ';
-                 }
-                 else
-                 {
-                  echo '
-                  <ul class="pagination">      
-                    <li class="page-item"><a class="page-link" href="main?page='.$previous.'">Предыдущая</a></li>
-                    <li class="page-item"><a class="page-link" href="main?page='.$next.'">Следующая</a></li>
-                  </ul>      
-                  ';
-                 }
-                }
-                else
-                {
-                 echo "<p>No Data found.</p>";
-                }
-                ?>
+
                 </div>  
 
-                <?php include_once('tamplate/other/footer.php') ?>  
-
+     <?php include_once('tamplate/other/footer.php') ?>   
     </body>
 </html>
 

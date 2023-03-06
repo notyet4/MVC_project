@@ -1,4 +1,5 @@
 <?php
+include_once ROOT . '/models/Page.php';
 
 class News {
 
@@ -47,6 +48,7 @@ class News {
                                     article.short_article,
                                     article.article_text,
                                     article.image_article,
+                                    article.id_category,
                                     user.login
                                  FROM
                                     article
@@ -61,5 +63,73 @@ class News {
             return $newsItem;
         }
     }
+    
+    
+    public static function add_news($title_article, $image_article, $short_article, $article_text, $id_category){
+        $db = Db::getConnection();
+        $sql = 'INSERT INTO article (title_article, image_article, short_article, article_text, id_category, id_user) VALUES (:title_article, :image_article, :short_article, :article_text, :id_category, 1)';
+        $result = $db->prepare($sql);
+        $result->bindParam(':title_article', $title_article, PDO::PARAM_STR);
+        $result->bindParam(':image_article', $image_article, PDO::PARAM_STR);
+        $result->bindParam(':short_article', $short_article, PDO::PARAM_STR);
+        $result->bindParam(':article_text', $article_text, PDO::PARAM_STR);
+        $result->bindParam(':id_category', $id_category, PDO::PARAM_STR);
+        return $result->execute();
+    }
+    
+    public static function createNewsImg($title_article, $image_article, $short_article, $article_text, $id_category)
+    {
+        $image_article = Page::file($image_article);
+        $db = Db::getConnection();
+        $sql = 'INSERT INTO article (title_article, image_article, short_article, article_text, id_category, id_user) VALUES (:title_article, :image_article, :short_article, :article_text, :id_category, 1)';
+        $result = $db->prepare($sql);
+        $result->bindParam(':title_article', $title_article, PDO::PARAM_STR);
+        $result->bindParam(':image_article', $image_article, PDO::PARAM_STR);
+        $result->bindParam(':short_article', $short_article, PDO::PARAM_STR);
+        $result->bindParam(':article_text', $article_text, PDO::PARAM_STR);
+        $result->bindParam(':id_category', $id_category, PDO::PARAM_STR);
+        return $result->execute();
+    }
+    
+    
+    public static function delete_news($id)
+    {
+        $db = Db::getConnection();
+        $sql = 'DELETE FROM article WHERE id_article = :id';
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
 
+    
+    public static function update_news($title_article, $short_article, $article_text, $id_category, $id){
+        $db = Db::getConnection();
+        $sql = "UPDATE article SET title_article=:title_article, short_article=:short_article, article_text=:article_text, id_category=:id_category WHERE id_article =:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':title_article', $title_article, PDO::PARAM_STR);
+        $result->bindParam(':short_article', $short_article, PDO::PARAM_STR);
+        $result->bindParam(':article_text', $article_text, PDO::PARAM_STR);
+        $result->bindParam(':id_category', $id_category, PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_STR);
+
+        return $result->execute();
+    }
+    
+    public static function updateNewsImg($title_article, $image_article, $short_article, $article_text, $id_category, $id)
+    {
+        $image_article = Page::file($image_article);
+        $db = Db::getConnection();
+        $sql = 'UPDATE article SET title_article=:title_article, image_article=:image_article, short_article=:short_article, article_text=:article_text, id_category=:id_category WHERE id_article=:id';
+        $result = $db->prepare($sql);
+        $result->bindParam(':title_article', $title_article, PDO::PARAM_STR);
+        $result->bindParam(':image_article', $image_article, PDO::PARAM_STR);
+        $result->bindParam(':short_article', $short_article, PDO::PARAM_STR);
+        $result->bindParam(':article_text', $article_text, PDO::PARAM_STR);
+        $result->bindParam(':id_category', $id_category, PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_STR);
+
+        return $result->execute();
+    }
+    
+    
 }

@@ -28,9 +28,11 @@ private function getURI()  // метод возвращает строку за�
 
 public function run()
 {
+    $flag = 0;
     $uri = $this->getURI();
     foreach($this->routes as $uriPattern => $path){
         if(preg_match("~$uriPattern~", $uri)){
+            $flag = 1;
             $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
             $segments = explode('/', $internalRoute);
             array_shift($segments);
@@ -50,6 +52,8 @@ public function run()
             die;
         }
         
+    }if($flag == 0){
+        include_once('views/404.php');
     }
 
 }

@@ -46,33 +46,37 @@ class UserController {
         return true;
     }
 
-    public function actionLogin()
-{
-    $email = false;
-    $password = false;
-    if (isset($_POST['submit'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        if(!User::checkEmail($email)) {
-            $errors[] = 'Неправильный email';
-        }
-        if (!User::checkPassword($password)) {
-            $errors[] = 'Пароль не должен быть короче 6-ти символов';
-        }else{
-            $check = Users::checkUserDataHash($email);
-            $hashed_password = $check['password'];
-            $userId = $check['id_user'];
-            if ($this->verify($password, $hashed_password)){
-                Users::auth($userId);
-            }else{
-                $errors[] = 'Неправильные данные для входа на сайт';
+    public function actionLogin() {
+        $email = false;
+        $password = false;
+        if (isset($_POST['submit'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            if (!User::checkEmail($email)) {
+                $errors[] = 'Неправильный email';
             }
-    }   }
-    require_once(ROOT . '/views/login.php');
-    return true;
-}
+            if (!User::checkPassword($password)) {
+                $errors[] = 'Пароль не должен быть короче 6-ти символов';
+            } else {
+                $check = Users::checkUserDataHash($email);
+                if ($check == false) {
+                    $errors[] = 'Такого email не существует';
+                } else {
+                    $hashed_password = $check['password'];
+                    $userId = $check['id_user'];
+                    $id_role = $check['id_role'];
+                    if ($this->verify($password, $hashed_password)) {
+                        Users::auth($userId, $id_role);
+                    }else{
+                        $errors[] = 'Неправильные данные для входа на сайт';
+                    }
+                }
+            }
+        }
+        require_once(ROOT . '/views/login.php');
+        return true;
+    }
 
-    
     public function actionLogout()
     {
         unset($_SESSION["user"]);
@@ -89,4 +93,6 @@ class UserController {
             return false;
         }
     }
+    
 }
+

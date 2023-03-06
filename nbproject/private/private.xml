@@ -4,10 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/open/OSPanel/domains/localhost/new_frame/controllers/UserController.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/views/search.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/views/main.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/views/login.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/models/Page.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/components/Db.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/models/News.php</file>
             <file>file:/E:/open/OSPanel/domains/localhost/new_frame/controllers/MainController.php</file>
-            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/models/Users.php</file>
-            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/models/Main.php</file>
-            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/models/User.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/views/addnews.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/config/routes.php</file>
+            <file>file:/E:/open/OSPanel/domains/localhost/new_frame/tamplate/other/header.php</file>
             <file>file:/E:/open/OSPanel/domains/localhost/new_frame/controllers/NewsController.php</file>
         </group>
     </open-files>

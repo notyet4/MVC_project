@@ -15,8 +15,9 @@ class Users
     
     
     
-    public static function auth($userId){
+    public static function auth($userId, $id_role){
         $_SESSION['user'] = $userId;
+        $_SESSION['id_role'] = $id_role;
     }
     
     
@@ -27,6 +28,11 @@ class Users
         else{
             return true;
         }
+    }
+    
+    public static function checkAdmin(){
+        $db = Db::getConnection();
+        $sql = 'SELECT * FROM articles_2.user WHERE id_role == ';
     }
     
     

@@ -3,7 +3,7 @@ include_once ROOT . '/models/Main.php';
 class MainController
 {
 
-    public function actionMain(){
+    public  function actionMain(){
         $page = Main::page();
         $previous = Main::previous($page);
         $next = Main::next($page);
@@ -19,5 +19,20 @@ class MainController
     }
     
     
+    public static function actionSearch() {
+        
+        $search_q=$_POST['search_q'];
+        $search_q = trim($search_q);
+        $search_q = strip_tags($search_q);
+        $result = Main::check($search_q);
+        include_once ROOT . '/views/search.php';
+    }
     
-}
+    
+    
+    
+    
+    
+    
+    
+}   
